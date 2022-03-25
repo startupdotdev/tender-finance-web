@@ -7,7 +7,9 @@ export default function Header() {
   return (
     <div className="flex c mt-8">
       <div className="flex-grow">
-        <img src="/images/logo.svg" alt="Tender Finance" />
+        <a href="/">
+          <img src="/images/logo.svg" alt="Tender Finance" />
+        </a>
       </div>
       <div>
         <button
