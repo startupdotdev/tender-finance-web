@@ -1,11 +1,11 @@
-import { cToken, SwapRow, Token, SwapRowMarketDatum } from "~/types/global";
+import { SwapRow, SwapRowMarketDatum } from "~/types/global";
 import { useEffect, useState } from "react";
-import { JsonRpcSigner, Web3Provider } from "@ethersproject/providers";
+import { JsonRpcSigner } from "@ethersproject/providers";
 
 import clsx from "clsx";
 import toast from "react-hot-toast";
 
-import { enable, repay, getCurrentlyBorrowing } from "~/lib/tender";
+import { getCurrentlyBorrowing } from "~/lib/tender";
 
 interface Props {
   closeModal: Function;
@@ -26,7 +26,6 @@ export default function Borrow({
   signer,
   formattedBorrowedAmount,
   borrowLimitUsed,
-  walletBalance,
 }: Props) {
   let [value, setValue] = useState<string>("");
   let [currentlyBorrowing, setCurrentlyBorrowing] = useState<string>("0");

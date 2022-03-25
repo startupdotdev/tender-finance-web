@@ -1,19 +1,13 @@
-import { cToken, SwapRow, Token, SwapRowMarketDatum } from "~/types/global";
+import { SwapRow, SwapRowMarketDatum } from "~/types/global";
 import { useEffect, useState } from "react";
-import { Signer } from "ethers";
 import { useWeb3React } from "@web3-react/core";
 import { JsonRpcSigner, Web3Provider } from "@ethersproject/providers";
-
-import clsx from "clsx";
-import toast from "react-hot-toast";
 
 import Repay from "~/components/borrow-flow/repay";
 import Borrow from "~/components/borrow-flow/repay";
 
 import {
   getWalletBalance,
-  enable,
-  getCurrentlyBorrowing,
   getBorrowLimit,
   getBorrowedAmount,
   getBorrowLimitUsed,
