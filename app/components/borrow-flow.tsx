@@ -62,6 +62,7 @@ export default function BorrowFlow({ closeModal, row, marketData }: Props) {
       getBorrowedAmount(signer, row.cToken).then((b) => {
         setBorrowedAmount(b);
 
+        // TODO: We do this formatting in several places, should be abstracted into a function
         const formattedAmount = (b / 1e18).toFixed(2).toString();
         setFormattedBorrowedAmount(formattedAmount);
       });
