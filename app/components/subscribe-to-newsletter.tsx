@@ -6,7 +6,7 @@ export default function SubscribeToNewsletter() {
       </div>
       <div className="max-w-lg m-auto mb-6">
         Tender is an open source and non-custodial liquidity protocol for
-        earning interest on deposits and borrowing assets.
+        borrowing assets and earning interest on deposits.
       </div>
       <div className="inline-block m-auto mb-20 ">
         <button className="flex bg-brand-black text-white px-12 py-5">

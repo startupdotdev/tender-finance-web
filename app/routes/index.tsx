@@ -26,7 +26,7 @@ export default function Index() {
           </div>
           <div className="mb-12 max-w-lg">
             Tender is an open source and non-custodial liquidity protocol for
-            earning interest on deposits and borrowing assets.
+            borrowing assets and earning interest on deposits.
           </div>
           <div className="mb-16">
             <Link to="/app">
@@ -65,7 +65,7 @@ export default function Index() {
             </div>
             <div className="leading-loose">
               These stakeholders actively contribute as part of the community to
-              the Aave Protocol and its governance.
+              the Tender Finance Protocol and its governance.
             </div>
           </div>
           <div className="flex-grow">&nbsp;</div>

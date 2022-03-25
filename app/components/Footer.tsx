@@ -113,10 +113,10 @@ export default function Footer() {
           ))}
         </div>
         <div>
-          <div className="heading mb-5">Get in touch</div>
+          <div className="heading mb-5">Get in Touch</div>
 
           <div className="mb-8 text-sm font-light text-gray-500">
-            We want to hear from you. Find us on social media
+            We want to hear from you.
           </div>
           <div className="flex">
             <a href="#" className="mr-3">
