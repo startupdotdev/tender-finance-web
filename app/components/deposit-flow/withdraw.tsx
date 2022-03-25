@@ -1,6 +1,6 @@
 import { SwapRow, SwapRowMarketDatum } from "~/types/global";
 import { useEffect, useState } from "react";
-import { JsonRpcSigner, Web3Provider } from "@ethersproject/providers";
+import { JsonRpcSigner } from "@ethersproject/providers";
 import toast from "react-hot-toast";
 
 import clsx from "clsx";

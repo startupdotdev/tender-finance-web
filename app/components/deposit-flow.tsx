@@ -1,12 +1,8 @@
 import { SwapRow, SwapRowMarketDatum } from "~/types/global";
 import { useEffect, useState } from "react";
-import { Signer } from "ethers";
 import { useWeb3React } from "@web3-react/core";
 import { JsonRpcSigner, Web3Provider } from "@ethersproject/providers";
-import { ethers } from "ethers";
 
-import clsx from "clsx";
-import toast from "react-hot-toast";
 import Deposit from "~/components/deposit-flow/deposit";
 import Withdraw from "~/components/deposit-flow/withdraw";
 
