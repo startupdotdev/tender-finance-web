@@ -1,5 +1,5 @@
-import { cToken, SwapRow, Token, SwapRowMarketDatum } from "~/types/global";
-import { useEffect, useState } from "react";
+import { SwapRow, SwapRowMarketDatum } from "~/types/global";
+import { useState } from "react";
 import { JsonRpcSigner, Web3Provider } from "@ethersproject/providers";
 
 import clsx from "clsx";

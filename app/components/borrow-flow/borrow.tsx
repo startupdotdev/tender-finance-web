@@ -5,7 +5,7 @@ import { JsonRpcSigner } from "@ethersproject/providers";
 import clsx from "clsx";
 import toast from "react-hot-toast";
 
-import { getCurrentlyBorrowing } from "~/lib/tender";
+import { getCurrentlyBorrowing, borrow } from "~/lib/tender";
 
 interface Props {
   closeModal: Function;
@@ -134,7 +134,7 @@ export default function Borrow({
                       setIsBorrowing(true);
                       // @ts-ignore existence of signer is gated above.
                       await borrow(value, signer, row.cToken);
-                      setValue("");
+                      //   setValue("");
                       toast.success("Borrow successful");
                       closeModal();
                     } catch (e) {

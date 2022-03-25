@@ -4,7 +4,7 @@ import { useWeb3React } from "@web3-react/core";
 import { JsonRpcSigner, Web3Provider } from "@ethersproject/providers";
 
 import Repay from "~/components/borrow-flow/repay";
-import Borrow from "~/components/borrow-flow/repay";
+import Borrow from "~/components/borrow-flow/borrow";
 
 import {
   getWalletBalance,
