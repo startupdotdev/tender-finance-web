@@ -129,6 +129,23 @@ async function getCurrentlySupplying(
 /**
  *
  * @param signer
+ * @param cToken
+ * @returns string
+ */
+async function getCurrentlyBorrowing(
+  signer: Signer,
+  cToken: cToken
+): Promise<string> {
+  let contract = new ethers.Contract(cToken.address, SampleCTokenAbi, signer);
+  let address = await signer.getAddress();
+  let balance = await contract.borrowBalanceStored(address);
+  debugger;
+  return (balance / 1e18).toFixed(2).toString();
+}
+
+/**
+ *
+ * @param signer
  * @param comptrollerAddress
  * @param cToken
  * @returns
@@ -232,6 +249,7 @@ export {
   redeem,
   getWalletBalance,
   getCurrentlySupplying,
+  getCurrentlyBorrowing,
   getBorrowLimit,
   getBorrowedAmount,
   getBorrowLimitUsed,

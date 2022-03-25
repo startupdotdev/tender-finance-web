@@ -7,7 +7,7 @@ import { JsonRpcSigner, Web3Provider } from "@ethersproject/providers";
 import clsx from "clsx";
 import toast from "react-hot-toast";
 
-import { getWalletBalance, enable } from "~/lib/tender";
+import { getWalletBalance, enable, getCurrentlyBorrowing } from "~/lib/tender";
 
 interface Props {
   closeModal: Function;
@@ -21,6 +21,7 @@ export default function BorrowFlow({ closeModal, row, marketData }: Props) {
   let [signer, setSigner] = useState<JsonRpcSigner | null>(null);
   let [value, setValue] = useState<string>("");
   let [walletBalance, setWalletBalance] = useState<string>("0");
+  let [currentlyBorrowing, setCurretlyBorrowing] = useState<string>("0");
 
   let [isEnabling, setIsEnabling] = useState<boolean>(false);
   let [isBorrowing, setIsBorrowing] = useState<boolean>(false);
@@ -38,6 +39,10 @@ export default function BorrowFlow({ closeModal, row, marketData }: Props) {
 
     if (signer && row.token) {
       getWalletBalance(signer, row.token).then((b) => setWalletBalance(b));
+
+      getCurrentlyBorrowing(signer, row.cToken).then((c) =>
+        setCurretlyBorrowing(c)
+      );
     }
   }, [library]);
 
@@ -286,7 +291,9 @@ export default function BorrowFlow({ closeModal, row, marketData }: Props) {
 
             <div className="flex text-gray-500">
               <div className="flex-grow">Currently Borrowing</div>
-              <div>0 {row.name}</div>
+              <div>
+                {currentlyBorrowing} {row.name}
+              </div>
             </div>
           </div>
         </div>
