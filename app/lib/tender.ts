@@ -6,12 +6,6 @@ import SampleErc20Abi from "~/config/sample-erc20-abi";
 import SampleComptrollerAbi from "~/config/sample-comptroller-abi";
 
 /**
- * -------------------------------
- * Depost Flow
- * -------------------------------
- */
-
-/**
  * Enable
  *
  * @param signer E
@@ -33,6 +27,25 @@ async function enable(
   let approvalVal = "1000000000000000000";
   let approvalTx = await contract.approve(cToken.address, approvalVal);
 }
+
+/**
+ *
+ * @param signer
+ * @param token
+ * @returns
+ */
+async function getWalletBalance(signer: Signer, token: Token): Promise<string> {
+  let contract = new ethers.Contract(token.address, SampleErc20Abi, signer);
+  let address = await signer.getAddress();
+  let balance = await contract.balanceOf(address);
+  return balance.toString();
+}
+
+/**
+ * -------------------------------
+ * Depost Flow
+ * -------------------------------
+ */
 
 /**
  * Deposit
@@ -95,19 +108,6 @@ async function redeem(value: string, signer: Signer, cToken: cToken) {
   let contract = new ethers.Contract(cToken.address, SampleCTokenAbi, signer);
   let tx = await contract.redeem(formattedValue);
   // }
-}
-
-/**
- *
- * @param signer
- * @param token
- * @returns
- */
-async function getWalletBalance(signer: Signer, token: Token): Promise<string> {
-  let contract = new ethers.Contract(token.address, SampleErc20Abi, signer);
-  let address = await signer.getAddress();
-  let balance = await contract.balanceOf(address);
-  return balance.toString();
 }
 
 /**
@@ -186,9 +186,45 @@ async function getBorrowLimitUsed(
 
 /**
  * -------------------------------
- * Depost Flow
+ * Withdraw Flow
  * -------------------------------
  */
+
+/**
+ *
+ * @param value
+ * @param signer
+ * @param cToken
+ */
+async function repay(value: string, signer: Signer, cToken: cToken) {
+  const formattedValue = value;
+  let contract = new ethers.Contract(cToken.address, SampleCTokenAbi, signer);
+  await contract.repayBorrow(formattedValue);
+}
+
+/**
+ *
+ * @param value
+ * @param signer
+ * @param cToken
+ */
+async function borrow(value: string, signer: Signer, cToken: cToken) {
+  //  if (isCEth) {
+  //   console.log("borrow() with cEth");
+
+  //   const formattedValue = ethers.utils.parseEther(value);
+  //   console.log("input value:", value, "formattedValue:", formattedValue);
+
+  //   let contract = new ethers.Contract(address, sampleAbi, web3React.library?.getSigner());
+  //   let tx = await contract.borrow(formattedValue);
+  // }
+  // else {
+
+  const formattedValue = value;
+  let contract = new ethers.Contract(cToken.address, SampleCTokenAbi, signer);
+  let tx = await contract.borrow(formattedValue);
+  // }
+}
 
 export {
   enable,
@@ -199,4 +235,6 @@ export {
   getBorrowLimit,
   getBorrowedAmount,
   getBorrowLimitUsed,
+  repay,
+  borrow,
 };
