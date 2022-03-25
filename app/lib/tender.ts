@@ -38,7 +38,7 @@ async function getWalletBalance(signer: Signer, token: Token): Promise<string> {
   let contract = new ethers.Contract(token.address, SampleErc20Abi, signer);
   let address = await signer.getAddress();
   let balance = await contract.balanceOf(address);
-  return balance.toString();
+  return (balance / 1e18).toFixed(2).toString();
 }
 
 /**
@@ -123,6 +123,8 @@ async function getCurrentlySupplying(
   let contract = new ethers.Contract(cToken.address, SampleCTokenAbi, signer);
   let address = await signer.getAddress();
   let balance = await contract.balanceOf(address);
+  // TODO: Do we need to do a similar thing here?
+  // return (balance / 1e18).toFixed(2).toString();
   return balance.toString();
 }
 
@@ -139,7 +141,6 @@ async function getCurrentlyBorrowing(
   let contract = new ethers.Contract(cToken.address, SampleCTokenAbi, signer);
   let address = await signer.getAddress();
   let balance = await contract.borrowBalanceStored(address);
-  debugger;
   return (balance / 1e18).toFixed(2).toString();
 }
 
