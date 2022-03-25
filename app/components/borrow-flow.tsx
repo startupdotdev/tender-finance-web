@@ -28,7 +28,7 @@ export default function BorrowFlow({ closeModal, row, marketData }: Props) {
   let [signer, setSigner] = useState<JsonRpcSigner | null>(null);
   let [value, setValue] = useState<string>("");
   let [walletBalance, setWalletBalance] = useState<string>("0");
-  let [currentlyBorrowing, setCurretlyBorrowing] = useState<string>("0");
+  let [currentlyBorrowing, setCurrentlyBorrowing] = useState<string>("0");
   let [borrowLimit, setBorrowLimit] = useState<number>(0);
   let [borrowLimitUsed, setBorrowLimitUsed] = useState<number>(0);
   let [borrowedAmount, setBorrowedAmount] = useState<number>(0);
@@ -53,7 +53,7 @@ export default function BorrowFlow({ closeModal, row, marketData }: Props) {
       getWalletBalance(signer, row.token).then((b) => setWalletBalance(b));
 
       getCurrentlyBorrowing(signer, row.cToken).then((c) =>
-        setCurretlyBorrowing(c)
+        setCurrentlyBorrowing(c)
       );
 
       getBorrowLimit(signer, row.comptrollerAddress, row.cToken).then((b) =>
