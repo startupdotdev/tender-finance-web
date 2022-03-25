@@ -78,9 +78,9 @@ async function loadMarketData(
         return {
           id: s.name,
           marketSizeUsd,
-          marketSizeNative: "TODO",
+          marketSizeNative: "~",
           totalBorrowedUsd,
-          totalBorrowedNative: "TODO",
+          totalBorrowedNative: "~",
           depositApy,
           borrowApy,
         };
