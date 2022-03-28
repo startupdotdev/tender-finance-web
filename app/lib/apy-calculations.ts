@@ -1,4 +1,4 @@
-import { ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 import sampleCTokenAbi from "~/config/sample-ctoken-abi";
 import { Token, cToken } from "~/types/global";
 import { JsonRpcSigner } from "@ethersproject/providers";
@@ -12,18 +12,21 @@ function formatApy(apy: number): string {
 function calculateApy(
   underlyingAssetMantissa: number,
   ratePerBlock: number
-): number {
-  const blocksPerDay = 6570; // 13.15 seconds per block
-  const daysPerYear = 365;
+): BigNumber {
+  const blocksPerDay: BigNumber = BigNumber.from(6570); // 13.15 seconds per block
+  const daysPerYear = BigNumber.from(365);
+  const ratePerBlock2: BigNumber = BigNumber.from(ratePerBlock);
+  const underlyingAssetMantissa2: BigNumber = BigNumber.from(
+    underlyingAssetMantissa
+  );
 
-  const apy =
-    (Math.pow(
-      (ratePerBlock / underlyingAssetMantissa) * blocksPerDay + 1,
-      daysPerYear
-    ) -
-      1) *
-    100;
+  const r = ratePerBlock2
+    .div(underlyingAssetMantissa2)
+    .mul(blocksPerDay)
+    .add(1);
+  const apy = r.pow(daysPerYear);
 
+  // @ts-ignore
   return apy;
 }
 
